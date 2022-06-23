@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Lameck Coin Toss Game</title>
+  </head>
+  <body>
+    <div class="canvas">
+      <h1>First Player to 5 Points Win!</h1>
+      <div class="selection">
+        Player Selected: <span id="player-selection"></span>
+      </div>
+      <div class="selection">
+        Computer Selected: <span id="computer-selection"></span>
+      </div>
+      <div id="center">
+        <div id="winner"></div>
+        <!-- <div id="image"></div> -->
+      </div>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="./assets/styles.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-  <div class="container">
-    <div class="button-container">
-      <button id="plusFive">+5</button>
-      <br />
-      <br />
-      <button id="plusTen">+10</button>
-      <br />
-      <br />
-      <button id="plusFifteen">+15</button>
-      <br />
-      <br />
-      <button id="plusTwenty">+20</button>
+      <div>
+        <div id="player">Player: <span id="player-score">0</span></div>
+        <div id="computer">Computer: <span id="computer-score">0</span></div>
+      </div>
+      <div>
+        <h2>Make a Selection</h2>
+        <button id="heads">Heads</button>
+        <button id="tails">Tails</button>
+      </div>
     </div>
-    <div class="display-container">
-      <h2 id="display-heading"></h2>
-      <h1 id="number-indicator">0</h1>
-    </div>
-  </div>
-  <script src="./assets/main.js"></script>
-</body>
-
+    <script src="./assets/main.js"></script>
+  </body>
 </html>

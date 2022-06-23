@@ -1,40 +1,86 @@
-const button5 = document.querySelector("#plusFive")
-const button10 = document.querySelector("#plusTen")
-const button15 = document.querySelector("#plusFifteen")
-const button20 = document.querySelector("#plusTwenty")
+//grab selection of head or tail
+const buttons = document.querySelectorAll("button");
+//set values for heads and tails
+let heads = 1;
+let tails = 0;
+let userScore = 0;
+let computerScore = 0;
 
-const indicator = document.querySelector("#number-indicator")
-const disp = document.querySelector("#display-heading")
-
-button5.addEventListener('click', () => {
-  //disp.textContent = "added 5"
-  //indicator.textContent = (parseInt(indicator.textContent) + 5).toString()
-  let val = 5
-  final(val)
-})
-
-button10.addEventListener('click', () => {
-  //disp.textContent = "added 10"
-  //indicator.textContent = (parseInt(indicator.textContent) + 10).toString()
-  let val = 10
-  final(val)
-})
-
-button15.addEventListener('click', () => {
-  //disp.textContent = "added 15"
-  //indicator.textContent = (parseInt(indicator.textContent) + 15).toString()
-  let val = 15
-  final(val)
-})
-
-button20.addEventListener('click', () => {
-  //disp.textContent = "added 20"
-  //indicator.textContent = (parseInt(indicator.textContent) + 20).toString()
-  let val = 20
-  final(val)
-})
-
-const final = (val)=>{
-	disp.textContent = `added${val}`
- 	indicator.textContent = (parseInt(indicator.textContent) + val).toString()
+function displaySelections(user, computer) {
+  const playerSelection = document.querySelector("#player-selection");
+  const computerSelection = document.querySelector("#computer-selection");
+  if (user === "heads") {
+    playerSelection.style.color = "green";
+  }
+  if (user === "tails") {
+    playerSelection.style.color = "blue";
+  }
+  if (computer === "heads") {
+    computerSelection.style.color = "green";
+  }
+  if (computer === "tails") {
+    computerSelection.style.color = "blue";
+  }
+  playerSelection.innerHTML = `${user}`;
+  computerSelection.innerHTML = `${computer}`;
 }
+
+function displayRandom(random) {}
+
+function tallyScore(random, userPick, computerPick) {
+  //select scoreboard from DOM
+  const playerDisplay = document.querySelector("#player-score");
+  const computerDisplay = document.querySelector("#computer-score");
+  const winner = document.querySelector("#winner");
+
+  if (userPick === random) {
+    userScore++;
+  }
+  if (computerPick === random) {
+    computerScore++;
+  }
+  playerDisplay.textContent = `${userScore}`;
+  computerDisplay.textContent = `${computerScore}`;
+
+  if (userScore === 5 && computerScore === 5) {
+    winner.innerHTML = `<h1>It's a Tie</h1>`;
+  } else if (userScore === 5) {
+    winner.innerHTML = `<h1>You Win!!!</h1>`;
+  } else if (computerScore === 5) {
+    winner.innerHTML = `<h1>Computer Wins!!!</h1>`;
+  }
+}
+
+//add an event listener to the buttons
+buttons.forEach(function (button) {
+  button.addEventListener("click", function (e) {
+    //Computer randomly select heads or tails
+    const random = Math.round(Math.random());
+    //Computer selects a random 'heads' or 'tails
+    const computerPick = Math.round(Math.random());
+    //Record computers selection
+    let computerSelection;
+    if (computerPick === 1) {
+      computerSelection = "heads";
+    } else {
+      computerSelection = "tails";
+    }
+
+    const userSelection = e.target.id;
+    let userPick;
+
+    if (userSelection === "heads") {
+      userPick = 1;
+    } else if (userSelection === "tails") {
+      userPick = 0;
+    }
+
+    displaySelections(userSelection, computerSelection);
+    displayRandom(random);
+
+    //Adds the score of the player and computer
+    setTimeout(function () {
+      tallyScore(random, userPick, computerPick);
+    });
+  });
+});
