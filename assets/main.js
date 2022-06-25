@@ -10,16 +10,16 @@ function displaySelections(user, computer) {
   const playerSelection = document.querySelector("#player-selection");
   const computerSelection = document.querySelector("#computer-selection");
   if (user === "heads") {
-    playerSelection.style.color = "green";
+    playerSelection.style.color = "red";
   }
   if (user === "tails") {
-    playerSelection.style.color = "blue";
+    playerSelection.style.color = "green";
   }
   if (computer === "heads") {
-    computerSelection.style.color = "green";
+    computerSelection.style.color = "red";
   }
   if (computer === "tails") {
-    computerSelection.style.color = "blue";
+    computerSelection.style.color = "green";
   }
   playerSelection.innerHTML = `${user}`;
   computerSelection.innerHTML = `${computer}`;
